@@ -32,7 +32,7 @@ public class Deck {
         // 1 rev carabine
         //cards.add(new Weapons("rev carabine"));
 
-        //1 winchester
+        // 1 winchester
         //cards.add(new Weapons("winchester"));
 
         // 4 mustangs

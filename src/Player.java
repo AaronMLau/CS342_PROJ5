@@ -85,7 +85,16 @@ public class Player {
         health--;
     }
 
+    public void modifyBanged(boolean didBang) {
+        banged = didBang;
+    }
+
     private void bang(Player other) {
+        if (banged) {
+            // modify to display this message (or disable bang button and ignore this)
+            System.out.println("Can't bang");
+            return;
+        }
         banged = true;
         Player right = next;
         Player left = prev;
@@ -105,12 +114,23 @@ public class Player {
         }
     }
 
+    private void reactToBang(boolean playedmiss) {
+        if (!targeted) {
+            // unnecessary probably
+            System.out.println("You're not being targeted");
+            return;
+        }
+        if (!playedmiss) {
+            health--;
+        }
+    }
+
     public void playCard(Card card, Player target) {
         switch (card.cardeffect()) {
             case "bang":
                 bang(target);
             case "missed":
-                targeted = false;
+                reactToBang(true);
             case "beer":
                 health++;
             case "mustang":

@@ -42,12 +42,36 @@ public class Game {
         }
     }
 
-    public void eliminatePlayers() {
-        for (Player person : people) {
-            if (person.remaininghealth() <= 0) {
-                people.remove(person);
-                //if this doesn't work use this commented part
-                //people.remove(people.indexOf(person));
+    public void eliminatePlayer(Player person) {
+        int pos = people.indexOf(person);
+        if (pos == -1) {
+            return; // player does not exist
+        } else if (person.getRole().equals("sheriff")) {
+            endGame(true);
+        }
+        if (pos == 0) {
+            people.get(players - 1).setNext(people.get(1));
+            people.get(1).setPrev(people.get(players - 1));
+        } else if (pos == players - 1) {
+            people.get(pos - 1).setNext(people.get(0));
+            people.get(0).setPrev(people.get(pos - 1));
+        } else {
+            people.get(pos - 1).setNext(people.get(pos + 1));
+            people.get(pos + 1).setPrev(people.get(pos - 1));
+        }
+
+        people.remove(person);
+        // or this if remove(object) doesn't work:
+        // people.remove(pos);
+        players--;
+        //if this doesn't work use this commented part
+        //people.remove(people.indexOf(person));
+        if (players <= 1) {
+            String role = people.get(0).getRole();
+            if (role.equals("sheriff")) {
+                endGame(false);
+            } else {
+                endGame(true);
             }
         }
     }
@@ -69,9 +93,11 @@ public class Game {
         for (int i = 0; i < players; i++) {
             if (people.get(i).go()) {
                 if (people.get(i).getHandSize() > people.get(i).remaininghealth()) {
+                    // placeholder. This isn't what actually happens
                     people.get(i).discardIndex(0);
                 }
                 people.get(i).swapturn();
+                people.get(i).modifyBanged(false);
                 if (i == players - 1) {
                     people.get(0).swapturn();
                 } else {
@@ -80,5 +106,28 @@ public class Game {
                 break;
             }
         }
+    }
+
+    public void endGame(boolean sheriffdied) {
+        if (!sheriffdied) {
+            // placeholder. Modify to actually display this message
+            System.out.println("Sheriff wins!");
+        } else {
+            boolean outlaws = false;
+            for (Player person : people) {
+                if (person.getRole().equals("outlaw")) {
+                    //placeholder. Modify to actually display this message
+                    System.out.println("Outlaws win!");
+                    outlaws = true;
+                    break;
+                }
+            }
+            if (!outlaws) {
+                // placeholder. Modify to actually display this message
+                System.out.println("Renegade wins!");
+            }
+        }
+
+        // insert something here to see if people want to play again or something
     }
 }
