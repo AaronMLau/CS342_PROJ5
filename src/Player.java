@@ -5,6 +5,7 @@ public class Player {
     String role;
     int health;
     int range;
+    boolean turn;
     boolean targeted;
     boolean banged;
     boolean mustang;
@@ -17,14 +18,15 @@ public class Player {
         this.name = name;
         this.role = role;
         this.health = health;
+        turn = false;
         range = 1;
         banged = false;
         targeted = false;
         mustang = false;
         hand = new ArrayList<Card>();
         //equipment = new ArrayList<Card>();
-        next = null;
-        prev = null;
+        next = null; // person sitting right of you
+        prev = null; // person sitting left of you
     }
 
     public void setNext(Player next) {
@@ -33,6 +35,42 @@ public class Player {
 
     public void setPrev(Player prev) {
         this.prev = prev;
+    }
+
+    public int remaininghealth() {
+        return health;
+    }
+
+    public boolean go() {
+        return turn;
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public void discard(Card card) {
+        hand.remove(card);
+    }
+
+    public void discardIndex(int i) {
+        hand.remove(i);
+    }
+
+    public int getHandSize() {
+        return hand.size();
+    }
+
+    public void addCard(Card card) {
+        hand.add(card);
+    }
+
+    public void swapturn() {
+        if (turn) {
+            turn = false;
+        } else {
+            turn = true;
+        }
     }
 
     public String getRole() {
@@ -77,14 +115,16 @@ public class Player {
                 health++;
             case "mustang":
                 mustang = true;
+            case "scope":
+                range += 1;
             case "schofield":
-                range = 2;
+                range += 1;
             case "remington":
-                range = 3;
-            case "rev carabine":
-                range = 4;
-            case "winchester":
-                range = 5;
+                range += 2;
+//            case "rev carabine":
+//                range += 3;
+//            case "winchester":
+//                range += 4;
             default:
                 System.out.println("Unknown card played");
         }
