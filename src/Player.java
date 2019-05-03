@@ -150,3 +150,37 @@ public class Player {
         }
     }
 }
+
+/*
+Bang! pseduo code:
+
+ - Global enum whosTurn
+
+Player{
+method turn{ //Things you can do on a turn
+ - endTurn()
+ - viewCards()
+ - viewRole()
+ - viewHealth()
+ - viewRange()
+ - viewEnemyHealth(right or left)
+ - playCard(Card c)
+ - addHealth()
+ - die()
+}
+
+method shootResponse{ //when someone shoots you
+ - PlayCard(Card c - Miss)
+ - LoseHealth(amount)
+}
+
+method playCard{
+ - bang(target) -> shootResponse(target)
+	- error check range
+ - beer() -> addHealth(this player)
+ - miss(target Shooter) ->
+
+ *- removeCard(Card c, this player)
+}
+}
+*/
