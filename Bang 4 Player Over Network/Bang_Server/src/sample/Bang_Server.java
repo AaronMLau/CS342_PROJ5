@@ -274,17 +274,30 @@ public class Bang_Server extends Application implements EventHandler<ActionEvent
 			case "h":
 			case "help":
 				return "Play bang by entering the keywords: \n \"cardname\" to play a card, \n \"bang playername\" to attack a player, \n \"missed\" to block an attack, etc.";
+				break;
 			case "b":
 			case "bang":
-				
+				if(tokens[1].isEmpty()){
+					return "";
+				}
+				p.playCard(new Card("bang"),BANG.getPlayer(tokens[1]));
+				return p.name + " banged " + BANG.getPlayer(tokens[1]);
 				break;
 			case "m":
 			case "miss":
 			case "missed":
-
+				p.playCard(new Card("missed"), p);
+				return "missed!";
 				break;
 			case "v":
 			case "view": // view hand
+				ArrayList<Card> hand = p.getHand();
+				String result = p.name + "\'s hand:";
+				for(Card c : hand){
+					result = result + "\n" + c.cardeffect();
+				}
+				result = result + "\n";
+				return result;
 				break;
 			case "schofield":
 				break;
@@ -292,7 +305,7 @@ public class Bang_Server extends Application implements EventHandler<ActionEvent
 				break;
 			case "mustang":
 				break;
-			case 
+			// unsure how to implement weapons at this point
 			default:
 				return;
 		}
