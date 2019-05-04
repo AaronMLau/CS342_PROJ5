@@ -44,6 +44,22 @@ public class Game {
         }
     }
 
+    public Player getPlayer(int num){
+        if(num > 3){
+            return null;
+        }
+        return people.at(num);
+    }
+
+    public Player getPlayer(String name){
+        for(Player p : people){
+            if(p.name.equals(name)){
+                return p;
+            }
+        }
+        return null;
+    }
+
     public void eliminatePlayer(Player person) {
         int pos = people.indexOf(person);
         if (pos == -1) {
