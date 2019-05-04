@@ -205,6 +205,8 @@ public class Bang_Server extends Application implements EventHandler<ActionEvent
 									playerTransmit[j].writeUTF(playerNames[playerIterator]+": "+Message);
 								}
 							}
+							// IMPLEMENTION OF TEXT-BASED BANG
+							//String response = Parse(Message, BANG.getPlayer(playerNames[playerIterator]));
 							/***********************************************************************/
 						}catch(IOException e) {
 							System.out.println("Message Error From: "+ playerNames[playerIterator]);
@@ -261,5 +263,36 @@ public class Bang_Server extends Application implements EventHandler<ActionEvent
 		   System.out.println("Error while closing connection!");
 		   System.exit(-1);
 		  }
+	}
+
+	// IMPLEMENTION OF TEXT-BASED BANG
+	private String Parse(String Message, Player p){
+		if(Message == null){return "";}
+		Message.ToLowerCase();
+		String[] tokens = str.split(" ");
+		switch(tokens[0]){
+			case "h":
+			case "help":
+				return "Play bang by entering the keywords: \n \"cardname\" to play a card, \n \"bang playername\" to attack a player, \n \"missed\" to block an attack, etc.";
+			case "b":
+			case "bang":
+				break;
+			case "m":
+			case "miss":
+			case "missed":
+				break;
+			case "v":
+			case "view": // view hand
+				break;
+			case "schofield":
+				break;
+			case "remington":
+				break;
+			case "mustang":
+				break;
+			case 
+			default:
+				return;
+		}
 	}
 }
