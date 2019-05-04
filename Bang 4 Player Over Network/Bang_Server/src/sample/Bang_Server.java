@@ -276,10 +276,12 @@ public class Bang_Server extends Application implements EventHandler<ActionEvent
 				return "Play bang by entering the keywords: \n \"cardname\" to play a card, \n \"bang playername\" to attack a player, \n \"missed\" to block an attack, etc.";
 			case "b":
 			case "bang":
+				
 				break;
 			case "m":
 			case "miss":
 			case "missed":
+
 				break;
 			case "v":
 			case "view": // view hand
