@@ -1,0 +1,24 @@
+String parsing between server and client
+
+*# : id number
+*n : client name
+*h : health
+*c : cards in hand
+*r : role
+*d : distance
+*s : who is the sheriff
+*t : is it your turn
+*w : have a weapon? 
+*x : target a player
+*e : error
+*p : print all after
+
+
+;  : end of expr
+^  : sep of cards in *c
+
+Example input: *#2*rrenegade*h4*c*r1beer^bang^mustang^bang^
+
+regex's:
+String regex = "\\*[#nhcprstew]";
+String[] tokens = message.split(regex);
