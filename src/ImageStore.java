@@ -8,4 +8,5 @@ public class ImageStore
    static Image card_back_image;
 
    static HashMap<String, Image> card_face_images;
+
 }
