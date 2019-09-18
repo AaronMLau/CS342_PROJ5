@@ -8,10 +8,10 @@ public class Weapons extends Card {
                 reach = 2;
             case "remington":
                 reach = 3;
-            case "rev carabine":
-                reach = 4;
-            case "winchester":
-                reach = 5;
+//            case "rev carabine":
+//                reach = 4;
+//            case "winchester":
+//                reach = 5;
             default:
                 // unknown weapon, default range
                 reach = 1;

@@ -1,11 +1,11 @@
 public class Card {
-    private String effect;
+    private String name;
 
     public Card(String effect) {
-        this.effect = effect;
+        this.name = effect;
     }
 
     public String cardeffect() {
-        return effect;
+        return name;
     }
 }
